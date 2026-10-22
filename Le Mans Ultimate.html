@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Le Mans Ultimate</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Barlow+Condensed:ital,wght@0,600;0,700;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050a30;--card:#0b1245;--tx:#fff;--mut:#a9b1d6;--ac:#e8394a;--bd:#1d2766;--hf:'Barlow Condensed','Arial Narrow',Impact,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root[data-theme=light]{--bg:#f2f4f8;--card:#fff;--tx:#151a22;--mut:#667085;--bd:#d8dde7}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px Arial,Helvetica,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;align-items:center;gap:12px;padding:14px 18px;background:#000}
+header img,.logo{width:36px;height:36px;object-fit:contain;border-radius:6px}
+.logo{color:var(--ac);display:flex;align-items:center;justify-content:center;font:italic 800 28px var(--hf);letter-spacing:-2px}
+header h1{flex:1;font:italic 700 22px var(--hf);letter-spacing:2px;text-transform:uppercase;margin:0}
+#menuBtn{background:none;border:0;color:var(--tx);font-size:26px;cursor:pointer}
+#menu{display:none;position:fixed;inset:0;z-index:1;background:#000;padding:110px 20px 40px;text-align:center;overflow:auto}
+#menu.open{display:block}#menu a{display:block;padding:12px;color:var(--tx);text-decoration:none;cursor:pointer;font:600 46px/1.1 var(--hf)}#menu a:hover,#menu a.on{color:var(--ac)}
+main{max-width:1200px;margin:auto;padding:14px}
+h2{font:700 clamp(40px,11vw,84px)/.95 var(--hf);letter-spacing:1px;text-transform:uppercase;margin:24px 0 22px;color:transparent;-webkit-text-stroke:2px var(--ac);text-align:right}h3{font:700 20px var(--hf);letter-spacing:2px;text-transform:uppercase;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+label{display:flex;flex-direction:column;font:600 12px var(--hf);letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);gap:4px}
+input,select,textarea,button{font:inherit;padding:8px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);width:100%}input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ac)}
+button{width:auto;background:var(--ac);color:#fff;border:0;cursor:pointer;padding:10px 20px;font:700 15px var(--hf);letter-spacing:2px;text-transform:uppercase;border-radius:8px}button:hover{background:#fff;color:#000}button.s{background:transparent;color:var(--tx);border:1px solid var(--tx);clip-path:none}button.s:hover{background:var(--tx);color:#000}#menuBtn{clip-path:none;background:none!important;padding:0 4px;position:relative;z-index:2;font:400 32px/1 Arial,sans-serif;letter-spacing:0;text-transform:none;color:#fff}
+.kpi{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.kpi div{background:var(--bg);border-top:3px solid var(--ac);border-radius:12px;padding:12px}.kpi b{display:block;font:italic 700 30px var(--hf)}.kpi span{color:var(--mut);font:600 12px var(--hf);letter-spacing:1.5px;text-transform:uppercase}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:900px}th,td{padding:6px;border-bottom:1px solid var(--bd);text-align:left;white-space:nowrap}th{color:var(--mut);font:600 13px var(--hf);letter-spacing:1.5px;text-transform:uppercase}tbody tr:hover{background:#ffffff08}td select{padding:4px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:end;margin-bottom:10px}.row>*{flex:1;min-width:140px}.row button{flex:0}
+.item{display:flex;justify-content:space-between;align-items:center;padding:14px 10px;font:600 18px var(--hf);letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--bd);cursor:pointer;gap:8px}
+.chip{display:inline-block;background:#000;border:1px solid var(--bd);border-left:3px solid var(--ac);padding:5px 12px;margin:3px;font:600 15px var(--hf);letter-spacing:1px;text-transform:uppercase}
+.sp{display:flex;flex-wrap:wrap;gap:10px}.sp div{flex:1;min-width:140px;text-align:center;padding:22px 16px;border:1px solid var(--bd);font:italic 700 20px var(--hf);letter-spacing:3px;text-transform:uppercase;background:#000}
+.diff{color:var(--ac);font-weight:700}.hide{display:none}.mb .card{background:var(--bg)}.dg{display:inline-grid;grid-template-columns:24px 24px;gap:4px;vertical-align:middle}.dt{width:24px;height:24px;border-radius:50%;border:2px solid #ffffff66;display:inline-flex;align-items:center;justify-content:center;font:700 12px Arial,sans-serif;font-style:normal;vertical-align:middle}.sg{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:14px;align-items:start}.sg>*{min-width:0}.sl .kpi{grid-template-columns:repeat(2,1fr)}@media(max-width:900px){.sg{grid-template-columns:1fr}}.hd{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}.hd b{font:700 24px var(--hf);letter-spacing:1px;text-transform:uppercase}.rt{cursor:pointer}.mo{position:fixed;inset:0;z-index:50;background:#000a;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}.mb{position:relative;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;max-width:760px;width:100%;max-height:92vh;overflow:auto}.mx{position:absolute;right:12px;top:12px;padding:6px 12px}.mg{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:620px){.mg{grid-template-columns:1fr}}.mp{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:12px}.mp .avi{width:110px;height:110px;font-size:48px}.mp b{font:700 26px var(--hf);letter-spacing:1px;text-transform:uppercase}.ml{min-width:0}.ml td{text-align:right}.tg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tb{background:var(--bg);border-radius:12px;padding:10px;font-size:14px;line-height:1.5}.tb small{display:block;color:var(--mut);font:600 12px var(--hf);letter-spacing:1.5px;text-transform:uppercase}.tb b{font:700 20px var(--hf);color:var(--ac)}.mr{display:flex;gap:8px;margin-bottom:8px}.mr input{flex:1}.mr button{flex:none;padding:8px 14px}input:disabled{opacity:.45;cursor:not-allowed}.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}.lgi{flex-direction:column;align-items:center;text-align:center;cursor:pointer;background:var(--bg);border-radius:12px;padding:10px;gap:6px!important;font-size:13px!important;text-transform:none!important;letter-spacing:0!important;color:var(--tx)}.lgi img{height:56px;max-width:100%;object-fit:contain}.lgi .avi{border-radius:12px}.lgs{height:48px;max-width:140px;object-fit:contain}.avi{width:56px;height:56px;border-radius:50%;object-fit:cover;display:flex;align-items:center;justify-content:center;background:var(--bd);font:700 26px var(--hf);flex:none}.av{cursor:pointer;flex-direction:row!important}.hm{display:flex;gap:6px}.pr{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 14px;margin-bottom:8px;background:var(--bg);border-radius:12px}.pr b{flex:1;min-width:120px;font:700 22px var(--hf);letter-spacing:1px;text-transform:uppercase}.sw{flex-direction:row!important;align-items:center;gap:8px!important;cursor:pointer;font-size:14px!important}.sw input{appearance:none;-webkit-appearance:none;width:44px;height:24px;border-radius:12px;background:var(--bd);position:relative;padding:0;border:0;cursor:pointer;transition:.2s}.sw input::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}.sw input:checked{background:var(--ac)}.sw input:checked::after{left:23px}
+</style></head><body>
+<header><div id="hl"></div><h1>Le Mans Ultimate</h1><button id="menuBtn" aria-label="Menu">☰</button>
+<div id="menu"></div></header><main id="app"></main><div id="mod"></div>
+<script>
+const $=s=>document.querySelector(s);
+const PAGES=['Strategia di gara','Setup','Tempi & Consumi','Team','Impostazioni'];
+let TRACKS=['Le Mans','Spa-Francorchamps','Monza','Fuji','Bahrain','Sebring','COTA','Imola','Interlagos','Portimão','Qatar'];
+let CLASSES=['Hypercar','LMP2','LMGT3'];
+let CARS={Hypercar:['Ferrari 499P','Toyota GR010','Porsche 963','Cadillac V-Series.R','Peugeot 9X8','BMW M Hybrid V8','Alpine A424','Lamborghini SC63'],LMP2:['Oreca 07'],LMGT3:['Ferrari 296 GT3','Porsche 911 GT3 R','BMW M4 GT3','Corvette Z06 GT3.R','McLaren 720S GT3 Evo','Aston Martin Vantage GT3','Lexus RC F GT3','Mercedes-AMG GT3']};
+const TYRES=['Soft','Medium','Hard','Wet'];
+const CHG=['No','Completo','Solo Splash','Cambio gomme totale','Cambio gomme parziale'];
+let D={team:{name:'Il mio Team',logo:'',drivers:['Pilota 1','Pilota 2','Pilota 3'],sponsors:[],stats:{Gare:0,Vittorie:0,Podi:0,'Giri veloci':0},races:[]},setups:[],times:[],mult:1,strat:{}};
+try{const s=localStorage.getItem('lmu');if(s)D=Object.assign(D,JSON.parse(s))}catch(e){}
+if(D.lists&&D.lists.tracks&&D.lists.classes&&D.lists.cars){TRACKS=D.lists.tracks;CLASSES=D.lists.classes;CARS=D.lists.cars}
+function save(){try{localStorage.setItem('lmu',JSON.stringify(D))}catch(e){alert('Spazio pieno: file troppo grande per essere salvato.')}}
+const opt=(a,v)=>a.map(x=>`<option ${x===v?'selected':''}>${x}</option>`).join('');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=s=>{s=Math.max(0,Math.round(s));return `${Math.floor(s/3600)}h ${String(Math.floor(s%3600/60)).padStart(2,'0')}m`};
+const hm=d=>d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});
+let page=0;
+function nav(i){page=i;$('#menu').classList.remove('open');$('#menuBtn').textContent='☰';render()}
+$('#menuBtn').onclick=e=>{const o=$('#menu').classList.toggle('open');e.target.textContent=o?'✕':'☰'};
+function head(){$('#hl').innerHTML=D.team.logo?`<img src="${D.team.logo}" alt="">`:'<div class="logo">LM</div>';
+$('#menu').innerHTML=PAGES.map((p,i)=>`<a class="${i==page?'on':''}" onclick="nav(${i})">${p}</a>`).join('')}
+function render(){head();[strat,setup,tempi,team,sett][page]();window.scrollTo(0,0)}
+
+/* STRATEGIA */
+function strat(){const S=D.strat;const cl=CARS[S.cl]?S.cl:CLASSES[0];
+const f=(k,l,t='number',d='')=>`<label>${l}<input id="s_${k}" type="${t}" step="any" value="${S[k]??d}" onchange="sv('${k}')"></label>`;
+$('#app').innerHTML=`<h2>Strategia di gara</h2><button id="datB" onclick="tgD()">${datOpen?'Dati ▴':'Dati ▾'}</button><div id="dat" class="${datOpen?'':'hide'}" style="margin-top:12px"><div class="card"><div class="grid">
+<label>Pista<select id="s_track" onchange="sv('track')">${opt(TRACKS,S.track)}</select></label>
+<label>Categoria<select id="s_cl" onchange="sv('cl');strat()">${opt(CLASSES,cl)}</select></label>
+<label>Auto<select id="s_car" onchange="sv('car')">${opt(CARS[cl],S.car)}</select></label>
+<label>Setup<select id="s_setup" onchange="sv('setup')"><option value="">—</option>${opt(D.setups.map(x=>x.name),S.setup)}</select></label>
+${dF()}${tF('start','Inizio gara reale','15:00')}${tF('gstart','Inizio gara in Game','12:00')}
+
+
+${cfg().res[cl]=='NRG'?f('nrg','NRG/giro (%)','number',2.8):''}
+
+</div></div>${tyF()}${partF()}${qF()}</div><div id="res"></div>`;calc()}
+function dF(){const m=parseFloat(D.strat.dur),v=Math.min(1440,isNaN(m)?360:m),h=Math.floor(v/60),mi=v%60,p=n=>String(n).padStart(2,'0'),rg=(n,s)=>Array.from({length:n},(_,i)=>`<option value="${i}" ${i==s?'selected':''}>${p(i)}</option>`).join('');return `<label>Durata gara (ore : minuti)<span class="hm"><select id="d_h" onchange="sd()">${rg(25,h)}</select><select id="d_m" onchange="sd()">${rg(60,mi)}</select></span></label>`}
+function sd(){const h=+$('#d_h').value;let m=+$('#d_m').value;if(h==24){m=0;$('#d_m').value=0}D.strat.dur=h*60+m;save();calc()}
+function tF(k,l,d){return `<label>${l}<input id="${k}_t" type="time" value="${D.strat[k]||d}" onchange="st2('${k}')"></label>`}
+function st2(k){const v=$('#'+k+'_t').value;if(!v)return;D.strat[k]=v;save();calc()}
+function tyF(){return `<div class="card"><label style="max-width:260px">Gomme disponibili<input type="number" min="0" value="${D.strat.tn??0}" onchange="tq(this.value)"></label></div>`}
+function tq(v){D.strat.tn=Math.max(0,+v||0);save();calc()}
+function pt(n){return (D.strat.part||{})[n]||{drive:true,eng:false}}
+function partF(){return `<div class="card"><h3 style="margin-top:0">Partecipanti</h3>${D.team.drivers.map((n,i)=>{const p=pt(n);return `<div class="pr">${av(n)}<b>${esc(n)}</b><label class="sw"><input type="checkbox" ${p.drive?'checked':''} onchange="pp(${i},'drive',this.checked)"><span>Guida</span></label><label class="sw"><input type="checkbox" ${p.eng?'checked':''} onchange="pp(${i},'eng',this.checked)"><span>Ingegnere</span></label></div>`}).join('')||'<span style="color:var(--mut)">Aggiungi i piloti dalla pagina Team</span>'}</div>`}
+function pp(i,k,v){const n=D.team.drivers[i];D.strat.part=D.strat.part||{};D.strat.part[n]=Object.assign({},pt(n),{[k]:v});save();calc()}
+function lapF(){const v=parseFloat(D.strat.lap),s=isNaN(v)?210:v,m=Math.floor(s/60);return `<label>Giro medio (minuti : secondi)<span class="hm"><input id="l_m" type="number" min="0" max="9" value="${m}" onchange="sl()"><input id="l_s" type="number" min="0" max="59.9" step="0.1" value="${(s-m*60).toFixed(1)}" onchange="sl()"></span></label>`}
+function sl(){const m=+$('#l_m').value||0,s=Math.min(59.9,+$('#l_s').value||0);D.strat.lap=Math.round((m*60+s)*10)/10;save();calc()}
+let datOpen=false;
+function tgD(){datOpen=!datOpen;$('#dat').classList.toggle('hide',!datOpen);$('#datB').textContent=datOpen?'Dati ▴':'Dati ▾'}
+function sv(k){const e=$('#s_'+k);D.strat[k]=e.multiple?[...e.selectedOptions].map(o=>o.value):e.value;save();if(k=='track'||k=='car')strat();else if(k!='cl')calc()}
+function calc(){const S=D.strat,n=(k,d)=>parseFloat(S[k])||d;
+const CC=CARS[S.cl]?S.cl:CLASSES[0],bd=(D.cat||{})[CC+'|'+(S.track||TRACKS[0])]||{},dur=n('dur',360)*60,lap=n('lap',210),fuel=n('fuel',4.2),nrg=+bd.ln>0?100/bd.ln:n('nrg',2.8),cc=CARS[S.cl]?S.cl:CLASSES[0],tank=cfg().tank[cc]||90,res=cfg().res[cc]||'Carburante',lico=n('lico',6)/100,ty=n('tyre',30),pit=parseFloat((D.pit||{})[S.track||TRACKS[0]])||n('pit',45);
+const laps=Math.ceil(dur/(lap+0));
+const lim=res=='NRG'?Math.floor(100/nrg):Math.floor(tank/fuel),limL=res=='NRG'?Math.floor(100/(nrg*(1-lico))):Math.floor(tank/(fuel*(1-lico))),stintN=Math.max(1,+bd.ln>0?+bd.ln:Math.min(lim,ty));
+const stintL=Math.max(1,+bd.ll>0?+bd.ll:Math.min(limL,ty));
+const lapsTot=Math.ceil(dur/lap);
+const ps=Math.max(0,Math.ceil(lapsTot/stintN)-1),psL=Math.max(0,Math.ceil(lapsTot/stintL)-1);
+const car0=(CARS[CC]||[]).includes(S.car)?S.car:((CARS[CC]||[])[0]||''),trk0=S.track||TRACKS[0];const S0=Math.ceil(lapsTot/stintN),lc=[1,2,3].map(k=>{const T=S0-k;let b='—',s=`${k} stint in meno: non possibile`;if(T>=1&&stintL>stintN){const x=Math.max(0,Math.ceil((lapsTot-T*stintN)/(stintL-stintN)));if(x<=T){b=x;s=`Stint Lico per ${k} stint in meno (${T} totali)`}else s=`${k} stint in meno: non raggiungibile con gli stint Lico`}else if(T>=1)s=`${k} stint in meno: gli stint Lico non sono più lunghi dei normali`;return {b,s}});
+$('#res').innerHTML=`<div class="sg"><div class="sl"><div class="card"><h3 style="margin-top:0">Dati stimati</h3><div class="kpi">
+<div><b>${lapsTot}</b><span>Giri stimati</span></div>
+<div><b>${ps}</b><span>Pit stop (senza Lico)</span></div><div><b>${psL}</b><span>Pit stop (con Lico)</span></div>
+${res=='NRG'?'':`<div><b>${fuel.toFixed(2)} L</b><span>Carburante/giro (senza Lico)</span></div><div><b>${(fuel*(1-lico)).toFixed(2)} L</b><span>Carburante/giro (con Lico)</span></div>`}
+${res=='NRG'?`<div><b>${nrg.toFixed(2)}%</b><span>NRG/giro (senza Lico)</span></div><div><b>${(+bd.ll>0?100/bd.ll:nrg*(1-lico)).toFixed(2)}%</b><span>NRG/giro (con Lico)</span></div>`:''}
+<div><b>${(100/ty).toFixed(1)}%</b><span>Consumo gomme/giro</span></div></div></div>
+<div class="card"><h3 style="margin-top:0">Stint Lico per ridurre gli stint</h3><div class="kpi">${lc.map(o=>`<div><b>${o.b}</b><span>${o.s}</span></div>`).join('')}</div></div>
+</div><div class="sr"><div class="hd">${lg2('track',trk0)}${lg2('class',CC)}${lg2('car',car0)}<b>${esc(car0)}</b></div><div class="hd" style="margin-bottom:10px"><span class="chip" style="cursor:pointer" onclick="mq()">Qualifica: ${dotH(S.qC||'Soft')} ${esc(S.qC||'Soft')}${S.qD?' · '+esc(S.qD):''}</span><span class="chip" style="cursor:pointer" onclick="mq()">Partenza: ${dotH(S.startC||'Medium')} ${esc(S.startC||'Medium')} ${S.startS=='Usate'?'usate ('+(S.startR??70)+'%)':'nuove'}</span></div><h3>Strategia</h3><div class="tw"><table><thead><tr><th>Stint</th><th>Box (giro)</th><th>Gomme</th><th>NRG</th><th>Pilota</th><th>Modalità</th><th>Tempo guida</th><th>Orario reale</th><th>Orario Game</th><th>Ingegnere</th><th>Riposo</th></tr></thead><tbody id="tb"></tbody></table></div></div></div>`;
+const useLico=S.mode==='Lico',L=useLico?stintL:stintN,N=Math.ceil(lapsTot/L),dv=D.team.drivers.filter(n=>pt(n).drive),drv=dv,engs=D.team.drivers.filter(n=>pt(n).eng),tyres=['Medium'];
+const st=S.rows||{};let t=0,done=0,h='',run=0,prevD=null,wst=[100,100,100,100],pcp=[null,null,null,null],USE={};const lastEnd={};STI=[];const carS=(CARS[CC]||[]).includes(S.car)?S.car:((CARS[CC]||[])[0]||'');
+const PTc=cfg().pt,tFuel=+PTc.fuel||0,tTyre=+PTc.tyre||0,tBody=+PTc.body||0,startC=TYRES.includes(S.startC)?S.startC:'Medium',tk=['fl','fr','rl','rr'];
+const [rh,rm]=(S.start||'15:00').split(':'),[gh,gm]=(S.gstart||'12:00').split(':');
+const r0=new Date(2026,0,1,rh,rm),g0=new Date(2026,0,1,gh,gm);
+for(let i=0;i<N;i++){const r=st[i]||{};const len=Math.min(L,lapsTot-done);done+=len;const dsec=len*lap*(r.mode==='Lico'?1.01:1);
+const P=r.pt||{},cp=tk.map((k,j)=>(P[k]&&P[k].c)||(i?pcp[j]:startC)),nw=tk.map((k,j)=>i==0||!!(P[k]&&P[k].ch)||cp[j]!==pcp[j]),nn=nw.filter(x=>x).length;
+const pitI=i?{lane:pit,fuel:tFuel,tyres:nn*tTyre,tyreEach:tTyre,body:r.body?tBody:0}:null,pitT=pitI?pitI.lane+pitI.fuel+pitI.tyres+pitI.body:0,tp0=t;t+=pitT;
+const drvI=drv.includes(r.drv)?r.drv:(drv[i%(drv.length||1)]||'');const same=i>0&&prevD===drvI;run=same?run+dsec:dsec;lastEnd[drvI]=t+dsec;prevD=drvI;const rl=drv.filter(x=>x!==drvI),rsel=(r.rest===''||rl.includes(r.rest))?r.rest:(rl.slice().sort((a,b)=>(lastEnd[a]??-1)-(lastEnd[b]??-1))[0]||''),rT=rsel?(t+dsec)-(rsel in lastEnd?lastEnd[rsel]:0):0;
+const mc=c=>c=='Medium'?'Media':c,dd=(D.dd||{})[[drvI,S.track||TRACKS[0],carS,S.setup||''].join('|')]||{},WW=dd.w||{};
+const ws=tk.map((k,j)=>nw[j]?(i==0?(S.startS=='Usate'?(parseFloat(S.startR)||70):100):((P[k]&&P[k].u)?(parseFloat(P[k].p)||60):100)):wst[j]);
+const we=ws.map((s0,j)=>{const q=parseFloat((WW[mc(cp[j])]||{})[tk[j]]);return (s0==null||isNaN(q))?null:Math.max(0,s0-len*q)});
+const prevCp=pcp.slice();wst=we;pcp=cp;
+const nxt=i<N-1?Math.min(L,lapsTot-done):0,lc2=((st[i+1]||{}).mode||(useLico?'Lico':'Normale'))=='Lico',need=res=='NRG'?Math.min(100,nxt*(lc2?(+bd.ll>0?100/bd.ll:nrg*(1-lico)):nrg)):Math.min(tank,nxt*fuel*(lc2?(1-lico):1)),pitTxt=nxt?`${need.toFixed(1)}${res=='NRG'?' % NRG':' L'}`:'';
+nw.forEach((n,j)=>{if(n)USE[cp[j]]=(USE[cp[j]]||0)+1});
+STI.push({drv:drvI,len,mode:r.mode||(useLico?'Lico':'Normale'),rS:r0.getTime()+t*1000,rE:r0.getTime()+(t+dsec)*1000,gS:g0.getTime()+t*1000*D.mult,gE:g0.getTime()+(t+dsec)*1000*D.mult,cp,prev:prevCp.map((x,j)=>x||cp[j]),ws,we,nw,first:i==0,u:res=='NRG'?'% NRG':'L',e0:(()=>{const m0=(r.mode||(useLico?'Lico':'Normale'))=='Lico';return res=='NRG'?Math.min(100,len*(m0?(+bd.ll>0?100/bd.ll:nrg*(1-lico)):nrg)):Math.min(tank,len*fuel*(m0?(1-lico):1))})(),us:Object.assign({},USE),us2:tk.map(k=>!!(P[k]&&P[k].u)),pp:tk.map(k=>(P[k]&&P[k].p)??60),body:!!r.body,pit:pitI,pS:r0.getTime()+tp0*1000,pE:r0.getTime()+t*1000,gpS:g0.getTime()+tp0*1000*D.mult,gpE:g0.getTime()+t*1000*D.mult,bl:dd.bl,avg:dd.avg});
+h+=`<tr class="rt" onclick="if(!event.target.closest('select,input'))mdl(${i})"><td>${i+1}</td><td>${i<N-1?done:'Fine'}</td>
+<td>${dots(cp,i,nw)}</td>
+<td style="color:var(--ac);font-weight:700">${pitTxt}</td>
+<td><select onchange="rw(${i},'drv',this.value)">${opt(drv,drvI)}</select></td>
+<td><select onchange="rw(${i},'mode',this.value)">${opt(['Normale','Lico'],r.mode||(useLico?'Lico':'Normale'))}</select></td>
+<td style="${run>10800?'color:#ff2d2d;font-weight:700':''}">${fmt(run)}</td><td>${hm(new Date(r0.getTime()+t*1000))}</td><td>${hm(new Date(g0.getTime()+t*1000*D.mult))}</td>
+<td><select onchange="rw(${i},'eng',this.value)"><option value="">—</option>${opt(engs,(r.eng===''||engs.includes(r.eng))?r.eng:(engs.find(e=>e!==drvI)||''))}</select></td><td><select onchange="rw(${i},'rest',this.value)"><option value="">—</option>${opt(rl,rsel)}</select> ${rsel?fmt(rT):''}</td></tr>`;t+=dsec}
+$('#tb').innerHTML=h}
+const TC={Soft:'#ffffff',Medium:'#ffd400',Hard:'#e8001c',Wet:'#1e6bff'};
+function dotH(c){const col=TC[c]||'#888';return `<i class="dt" style="background:${col};color:#000;border-color:${col}">${esc((c||'?')[0])}</i>`}
+function dots(cp,i,nw){const tk=['fl','fr','rl','rr'],c=(x,j)=>{const col=TC[x]||'#888',n=!nw||nw[j];return `<i class="dt" style="${n?`background:${col};color:#000;border-color:${col}`:`background:#000;color:${col};border-color:${col}`};cursor:pointer" onclick="event.stopPropagation();cyc(${i},'${tk[j]}')">${esc((x||'?')[0])}</i>`};return `<span class="dg">${[0,1,2,3].map(j=>c(cp[j],j)).join('')}</span>`}
+function setPT(i,k,patch){D.strat.rows=D.strat.rows||{};const r=(D.strat.rows[i]=D.strat.rows[i]||{});r.pt=r.pt||{};r.pt[k]=Object.assign({},r.pt[k]||{},patch);save();calc()}
+function spt2(i,k,patch,m){setPT(i,k,patch);mdl(m)}
+function cyc(i,k){const s=STI[i];if(!s)return;const j=['fl','fr','rl','rr'].indexOf(k);setPT(i,k,{c:TYRES[(TYRES.indexOf(s.cp[j])+1)%TYRES.length]})}
+let STI=[];
+function mdl(i){const s=STI[i];if(!s)return;const tk=['fl','fr','rl','rr'],nm=['Ant. sx','Ant. dx','Post. sx','Post. dx'],pc=x=>x==null?'—':x.toFixed(1)+' %',tm=(a,b)=>`Reale ${hm(new Date(a))} · Game ${hm(new Date(b))}`,sf=v=>v>=60?Math.floor(v/60)+' min '+String(Math.round(v%60)).padStart(2,'0')+' s':(Math.round(v*10)/10)+' s',S=D.strat;
+const R=[['Best lap',s.bl||'—'],['Giro medio',s.avg||'—'],['Stint numero',i+1],['Modalità',s.mode],['Numero di giri stint',s.len],['Ora di inizio stint',tm(s.rS,s.gS)],['Ora di fine stint',tm(s.rE,s.gE)],['Mescole usate',Object.keys(s.us).map(c=>`<span class="chip" style="margin:2px">${dotH(c)} ${s.us[c]}</span>`).join('')+(Object.keys(s.us).length?'<br>':'')+'Totale '+Object.values(s.us).reduce((a,b)=>a+b,0)+((S.tn>0)?' su '+S.tn:'')]];
+let pit;const n=STI[i+1];
+if(!n){pit=`<p style="margin:0">Ultimo stint: nessun pit stop, si arriva al traguardo.</p>`}
+else{const rows=tk.map((k,j)=>`<tr><td>${nm[j]}</td><td><button class="s" style="padding:4px 10px;font-size:13px" onclick="spt2(${i+1},'${k}',${n.nw[j]?`{ch:false,c:'${n.prev[j]}'}`:`{ch:true}`},${i})">${n.nw[j]?'Cambia':'Tieni'}</button></td><td>${dotH(n.cp[j])} <select style="width:auto;padding:4px" onchange="spt2(${i+1},'${k}',{c:this.value},${i})">${opt(TYRES,n.cp[j])}</select></td><td>${n.nw[j]?`<select style="width:auto;padding:4px" onchange="spt2(${i+1},'${k}',{u:this.value=='u'},${i})"><option value="n" ${n.us2[j]?'':'selected'}>Nuova</option><option value="u" ${n.us2[j]?'selected':''}>Usata</option></select>${n.us2[j]?` <input type="number" min="0" max="100" style="width:64px;padding:4px" value="${n.pp[j]}" onchange="spt2(${i+1},'${k}',{p:this.value},${i})"> %`:''}`:'—'}</td></tr>`).join('');
+const nn=n.nw.filter(x=>x).length,T2=[['Tempo pit lane',n.pit.lane],['Rifornimento completo',n.pit.fuel],[`Cambio gomme (${nn} × ${n.pit.tyreEach} s)`,n.pit.tyres]];if(n.body)T2.push(['Riparazione carrozzeria',n.pit.body]);const tot=T2.reduce((a,x)=>a+x[1],0);
+pit=`<p style="margin:0 0 4px;color:var(--mut)">Pit stop dopo lo stint ${i+1}, per partire con lo stint ${i+2}</p><p style="margin:0 0 6px"><b style="color:var(--ac);font-size:18px">Esci con ${n.e0.toFixed(1)} ${n.u}</b></p><p style="margin:0 0 10px;color:var(--mut)">Ingresso box: ${tm(n.pS,n.gpS)}<br>Uscita box: ${tm(n.pE,n.gpE)}</p><div class="tw"><table class="ml" style="min-width:0"><tr><th>Gomma</th><th>Azione</th><th>Mescola</th><th>Stato</th></tr>${rows}</table></div><p style="margin:10px 0"><label style="flex-direction:row;align-items:center;gap:8px">Riparazione carrozzeria<select style="width:auto;padding:4px" onchange="rw(${i+1},'body',this.value=='s');mdl(${i})"><option value="n" ${n.body?'':'selected'}>No</option><option value="s" ${n.body?'selected':''}>Sì</option></select></label></p><table class="ml" style="min-width:0">${T2.map(x=>`<tr><th>${x[0]}</th><td>${sf(x[1])}</td></tr>`).join('')}<tr><th>Durata totale pit</th><td><b>${sf(tot)}</b></td></tr></table>`}
+$('#mod').innerHTML=`<div class="mo" onclick="if(event.target===this)cm()"><div class="mb"><button class="s mx" onclick="cm()">✕</button><div class="mg"><div><div class="mp">${av(s.drv)}<b>${esc(s.drv)}</b></div><table class="ml">${R.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('')}</table></div><div><h3 style="margin-top:0">Gomme montate</h3><div class="tg">${tk.map((k,j)=>`<div class="tb"><small>${nm[j]}</small><b>${dotH(s.cp[j])} ${esc(s.cp[j])}</b><div>Iniziale: ${pc(s.ws[j])}</div><div>Finale: ${pc(s.we[j])}</div></div>`).join('')}</div></div></div><div class="card" style="margin:14px 0 0"><h3 style="margin-top:0">Pit-Stop</h3>${pit}</div></div></div>`}
+function qF(){const S=D.strat,dv=D.team.drivers.filter(n=>pt(n).drive);return `<div class="card"><h3 style="margin-top:0">Qualifiche e partenza</h3><div class="grid"><label>Gomme qualifica<select onchange="sq('qC',this.value)">${opt(TYRES,S.qC||'Soft')}</select></label><label>Pilota qualifica<select onchange="sq('qD',this.value)"><option value="">—</option>${opt(dv,S.qD)}</select></label><label>Gomme inizio gara<select onchange="sq('startC',this.value)">${opt(TYRES,S.startC||'Medium')}</select></label><label>Stato gomme inizio gara<select onchange="sq('startS',this.value);strat()">${opt(['Nuove','Usate'],S.startS||'Nuove')}</select></label>${S.startS=='Usate'?`<label>Residuo gomme usate (%)<input type="number" min="0" max="100" value="${S.startR??70}" onchange="sq('startR',this.value)"></label>`:''}</div></div>`}
+function sq(k,v){D.strat[k]=v;save();calc()}
+function ptF(){const p=cfg().pt;return `<div class="card"><h3 style="margin-top:0">Tempi pit stop (tutte le categorie)</h3><div class="grid"><label>Rifornimento completo (s)<input type="number" step="any" min="0" value="${p.fuel}" onchange="spt('fuel',this.value)"></label><label>Cambio gomma, una sola (s)<input type="number" step="any" min="0" value="${p.tyre}" onchange="spt('tyre',this.value)"></label><label>Riparazione carrozzeria (s)<input type="number" step="any" min="0" value="${p.body}" onchange="spt('body',this.value)"></label></div></div>`}
+function spt(k,v){cfg().pt[k]=+v||0;save()}
+function sqm(k,v){D.strat[k]=v;save();calc();mq()}
+function mq(){const S=D.strat,dv=D.team.drivers.filter(n=>pt(n).drive);$('#mod').innerHTML=`<div class="mo" onclick="if(event.target===this)cm()"><div class="mb" style="max-width:520px"><button class="s mx" onclick="cm()">✕</button><h3 style="margin-top:0">Qualifica e partenza</h3><div class="grid" style="grid-template-columns:1fr 1fr"><label>Pilota qualifica<select onchange="sqm('qD',this.value)"><option value="">—</option>${opt(dv,S.qD)}</select></label><label>Gomme qualifica ${dotH(S.qC||'Soft')}<select onchange="sqm('qC',this.value)">${opt(TYRES,S.qC||'Soft')}</select></label><label>Gomme di partenza gara ${dotH(S.startC||'Medium')}<select onchange="sqm('startC',this.value)">${opt(TYRES,S.startC||'Medium')}</select></label><label>Stato gomme di partenza<select onchange="sqm('startS',this.value)">${opt(['Nuove','Usate'],S.startS||'Nuove')}</select></label>${S.startS=='Usate'?`<label>Residuo gomme usate (%)<input type="number" min="0" max="100" value="${S.startR??70}" onchange="sqm('startR',this.value)"></label>`:''}</div></div></div>`}
+function cm(){$('#mod').innerHTML=''}
+function rw(i,k,v){D.strat.rows=D.strat.rows||{};(D.strat.rows[i]=D.strat.rows[i]||{})[k]=v;save();if(k!=='eng')calc()}
+
+/* SETUP */
+const SCH=[
+{c:'Dati base',g:[{n:'',f:[['dt','Data e ora'],['tc','TC'],['tcc','TC CUT'],['tcs','TC SLIP'],['fr','Ratio carburante']]}]},
+{c:'Trasmissione',g:[{n:'',f:[['rev','Limitatore giri motore'],['map','Mappa motore'],['rw',"Copertura radiatore dell'acqua"],['ro',"Copertura radiatore dell'olio"]]},{n:'Differenziale',f:[['dfp','Potenza Anteriore'],['dfc','Coppia Anteriore'],['dfl','Precarico Anteriore'],['drp','Potenza Posteriore'],['drc','Coppia Posteriore'],['drl','Precarico Posteriore']]},{n:'Rapporti',f:[['gt','Tipo Rapporti']]}]},
+{c:'Ruote e Freni',g:[{n:'Ruote',f:[['pa','Pressione Anteriore'],['ca','Campanatura Anteriore'],['da','Disco del freno Anteriore'],['pp','Pressione Posteriore'],['cp','Campanatura Posteriore'],['dp','Disco del freno Posteriore'],['bb','B-BIAS'],['fp','Forza pedale']]},{n:'Freni',f:[['ad','Adattamento dinamico della frenata'],['cfa','Condotto Freni Anteriori'],['cra','Condotto Freni Posteriori'],['abs','ABS']]}]},
+{c:'Sospensione',g:[{n:'',f:[['sfa','Flessibilità Molle Anteriore'],['sfd','Distanziatori Anteriore'],['sfh','Altezza assetto Anteriore'],['sf3','Flessibilità Molle Anteriore 3rd Spring'],['sf3d','Distanziatori Anteriore 3rd Spring'],['sra','Flessibilità Molle Posteriore'],['srd','Distanziatori Posteriore'],['srh','Altezza assetto Posteriore'],['sr3','Flessibilità Molle Posteriore 3rd Spring'],['sr3d','Distanziatori Posteriore 3rd Spring']]}]},
+{c:'Ammortizzatori',g:[{n:'Anteriore',f:[['sbf','Compressione lenta'],['fbf','Compressione rapida'],['srf','Estensione lenta'],['frf','Estensione rapida']]},{n:'Posteriore',f:[['sbr','Compressione lenta'],['fbr','Compressione rapida'],['srr','Estensione lenta'],['frr','Estensione rapida']]}]},
+{c:'Telaio e Aerodinamica',g:[{n:'',f:[['tf','Convergenza Anteriore'],['abf','Barra antirollio Anteriore'],['wi','Intervallo ruote'],['tr','Convergenza Posteriore'],['abr','Barra antirollio Posteriore'],['aw','Alettone Posteriore']]}]}];
+const FIELDS=SCH.flatMap(c=>c.g.flatMap(g=>g.f.map(x=>x[0])));
+const TH=/THIRD|3RD/,PK=/PACKER|RUBBER|SPACER/;
+const RX={tc:[/TRACTIONCONTROLMAP|TCMAP|TRACTIONCONTROLSETTING/,/CUT|SLIP/],tcc:[/TCCUT|TCPOWERCUT|TRACTIONCONTROLPOWERCUT|POWERCUT/],tcs:[/TCSLIP|TRACTIONCONTROLSLIP/],fr:[/FUELRATIO|FUELMIXTURE|FUELLOAD|FUELSETTING/],
+rev:[/REVLIMIT/],map:[/ENGINEMIXTURE|ENGINEMAP|ENGINEBOOST|ENGINEMODE/],rw:[/RADIATOR/,/OIL/],ro:[/OILRAD|OIL.*RADIATOR/],
+dfp:[/FRONT.*DIFF.*POWER/],dfc:[/FRONT.*DIFF.*COAST/],dfl:[/FRONT.*DIFF.*PRELOAD/],drp:[/DIFF.*POWER/,/FRONT/],drc:[/DIFF.*COAST/,/FRONT/],drl:[/DIFF.*PRELOAD/,/FRONT/],
+gt:[/FINALDRIVE|GEARRATIO|RATIOSET|GEARINGSETTING|GEARBOXSETTING/],
+pa:[/FRONTLEFT.*PRESSURE/],ca:[/FRONTLEFT.*CAMBER/],da:[/FRONTLEFT.*(BRAKEDISC|DISC)/],pp:[/REARLEFT.*PRESSURE/],cp:[/REARLEFT.*CAMBER/],dp:[/REARLEFT.*(BRAKEDISC|DISC)/],
+bb:[/BRAKEBALANCE|BRAKEBIAS|BBIAS/],fp:[/BRAKEPRESSURE|PEDALFORCE|BRAKEFORCE/],ad:[/MIGRATION|BRAKEADAPT|DYNAMICBRAK/],cfa:[/FRONT.*BRAKEDUCT/],cra:[/REAR.*BRAKEDUCT/],abs:[/ABS/],
+sfa:[/FRONTLEFT.*SPRINGSETTING/,/THIRD|3RD|RUBBER|PACKER/],sfd:[/FRONTLEFT.*(SPRINGRUBBER|PACKER|SPACER)/,TH],sfh:[/FRONTLEFT.*RIDEHEIGHT/],sf3:[/FRONT.*(THIRD|3RD)/,PK],sf3d:[/FRONT.*(THIRD|3RD).*(PACKER|RUBBER|SPACER)/],
+sra:[/REARLEFT.*SPRINGSETTING/,/THIRD|3RD|RUBBER|PACKER/],srd:[/REARLEFT.*(SPRINGRUBBER|PACKER|SPACER)/,TH],srh:[/REARLEFT.*RIDEHEIGHT/],sr3:[/REAR.*(THIRD|3RD)/,PK],sr3d:[/REAR.*(THIRD|3RD).*(PACKER|RUBBER|SPACER)/],
+sbf:[/FRONTLEFT.*SLOWBUMP/],fbf:[/FRONTLEFT.*FASTBUMP/],srf:[/FRONTLEFT.*SLOWREBOUND/],frf:[/FRONTLEFT.*FASTREBOUND/],sbr:[/REARLEFT.*SLOWBUMP/],fbr:[/REARLEFT.*FASTBUMP/],srr:[/REARLEFT.*SLOWREBOUND/],frr:[/REARLEFT.*FASTREBOUND/],
+tf:[/FRONT.*TOE/],abf:[/FRONT.*(ANTISWAY|ARB|SWAYBAR)/],wi:[/WHEELBASE|TRACKWIDTH|WHEELTRACK/],tr:[/REAR.*TOE/],abr:[/REAR.*(ANTISWAY|ARB|SWAYBAR)/],aw:[/REARWING|RWSETTING/,/FRONT/]};
+function parseSvm(txt,ts){const v={},raw=[];let sec='';txt.split(/\r?\n/).forEach(l=>{l=l.trim();if(!l||l.startsWith('//')||l.startsWith(';'))return;const m=l.match(/^\[(.+)\]$/);if(m){sec=m[1];return}const j=l.indexOf('=');if(j<1)return;const key=l.slice(0,j).trim();let val=l.slice(j+1),cm='';const c=val.indexOf('//');if(c>=0){cm=val.slice(c+2).trim();val=val.slice(0,c)}val=val.trim();const disp=cm?(val?val+' ('+cm+')':cm):val,id=(sec+'.'+key).toUpperCase().replace(/[^A-Z0-9.]/g,'');let hit=null;for(const f of FIELDS){if(v[f]!==undefined)continue;const r=RX[f];if(r&&r[0].test(id)&&!(r[1]&&r[1].test(id))){hit=f;break}}if(hit)v[hit]=disp;else raw.push('['+sec+'] '+key+' = '+disp)});if(ts)v.dt=new Date(ts).toLocaleString('it-IT');return {v,raw}}
+function readSvm(f,cb){const a=new FileReader();a.onload=()=>{const b=new FileReader();b.onload=()=>{const r=parseSvm(String(b.result),f.lastModified);r.dataUrl=a.result;cb(r)};b.readAsText(f)};a.readAsDataURL(f)}
+let sf={cl:'',car:'',track:''},open=-1,cmp=-1,sed=false;
+function setup(){
+const l=D.setups.map((s,i)=>({s,i})).filter(({s})=>(!sf.cl||s.cl==sf.cl)&&(!sf.car||s.car==sf.car)&&(!sf.track||s.track==sf.track));
+const allCars=[...new Set(D.setups.map(s=>s.car))];
+$('#app').innerHTML=`<h2>Setup</h2><div class="row"><label>Categoria<select onchange="sf.cl=this.value;setup()"><option value="">Tutte</option>${opt(CLASSES,sf.cl)}</select></label>
+<label>Auto<select onchange="sf.car=this.value;setup()"><option value="">Tutte</option>${opt(allCars,sf.car)}</select></label>
+<label>Pista<select onchange="sf.track=this.value;setup()"><option value="">Tutte</option>${opt(TRACKS,sf.track)}</select></label></div>
+<button onclick="$('#nw').classList.toggle('hide')">+ Aggiungi nuovo setup</button>
+<div id="nw" class="card hide" style="margin-top:10px"><div class="grid"><label>Nome<input id="n_name"></label>
+<label>Categoria<select id="n_cl" onchange="$('#n_car').innerHTML=opt(CARS[this.value]||[])">${opt(CLASSES)}</select></label>
+<label>Auto<select id="n_car">${opt(CARS[CLASSES[0]]||[])}</select></label><label>Pista<select id="n_track">${opt(TRACKS)}</select></label>
+<label>File setup (.svm)<input id="n_file" type="file"></label></div>
+<p style="color:var(--mut)">Il file viene trascritto nelle 6 categorie: potrai completare o correggere le voci con Modifica.</p><button onclick="addSetup()">Salva setup</button></div>
+<div class="card" style="margin-top:10px">${l.length?l.map(({s,i})=>`<div class="item" onclick="open=${i};cmp=-1;sed=false;setupDet()"><span><b>${esc(s.name)}</b></span><span style="color:var(--mut)">›</span></div>`).join(''):'<p style="color:var(--mut)">Nessun setup. Aggiungine uno.</p>'}</div>`}
+function addSetup(){const name=$('#n_name').value.trim();if(!name)return alert('Inserisci un nome');if(D.setups.some(x=>x.name==name))return alert('Esiste già un setup con questo nome');
+const o={name,cl:$('#n_cl').value,car:$('#n_car').value,track:$('#n_track').value,file:null,fname:'',v:{},raw:[]};
+const f=$('#n_file').files[0],done=()=>{D.setups.push(o);save();setup()};
+if(f)readSvm(f,r=>{o.v=r.v;o.raw=r.raw;o.file=r.dataUrl;o.fname=f.name;done()});else done()}
+function sv2(k,v){D.setups[open].v[k]=v;save()}
+function sm(k,v){const s=D.setups[open];v=v.trim();if(k=='name'){if(!v||v==s.name)return setupDet();if(D.setups.some(x=>x!==s&&x.name==v)){alert('Esiste già un setup con questo nome');return setupDet()}const o=s.name;s.name=v;re(D.dd||{},key=>{const p=key.split('|');if(p[3]==o)p[3]=v;return p.join('|')});if(D.strat.setup==o)D.strat.setup=v}else{s[k]=v;if(k=='cl')s.car=(CARS[v]||[])[0]||''}save();setupDet()}
+function reSvm(f){if(!f)return;if(!confirm('Sostituire le voci con quelle del nuovo file?'))return;readSvm(f,r=>{const s=D.setups[open];s.v=r.v;s.raw=r.raw;s.file=r.dataUrl;s.fname=f.name;save();setupDet()})}
+function setupDet(){const s=D.setups[open],o=cmp>=0?D.setups[cmp]:null;s.v=s.v||{};
+const gv=(x,k)=>x&&x.v&&x.v[k]!==undefined?x.v[k]:'';let nd=0;
+const body=SCH.map(c=>`<div class="card"><h3 style="margin-top:0">${c.c}</h3><div class="tw"><table style="min-width:0"><tr><th>Voce</th><th>${esc(s.name)}</th>${o?`<th>${esc(o.name)}</th>`:''}</tr>${c.g.map(g=>(g.n?`<tr><th colspan="${o?3:2}" style="color:var(--ac)">${g.n}</th></tr>`:'')+g.f.map(([k,l])=>{const a=gv(s,k),b=o?gv(o,k):'',df=o&&a!==b;if(df)nd++;return `<tr><td>${l}</td><td class="${df?'diff':''}">${sed?`<input value="${esc(a)}" onchange="sv2('${k}',this.value)">`:(esc(a)||'—')}</td>${o?`<td class="${df?'diff':''}">${esc(b)||'—'}</td>`:''}</tr>`}).join('')).join('')}</table></div></div>`).join('');
+const meta=sed?`<div class="grid"><label>Nome<input value="${esc(s.name)}" onchange="sm('name',this.value)"></label><label>Categoria<select onchange="sm('cl',this.value)">${opt(CLASSES,s.cl)}</select></label><label>Auto<select onchange="sm('car',this.value)">${opt(CARS[s.cl]||[],s.car)}</select></label><label>Pista<select onchange="sm('track',this.value)">${opt(TRACKS,s.track)}</select></label><label>Sostituisci file<input type="file" onchange="reSvm(this.files[0])"></label></div>`:`<p style="color:var(--mut);margin-top:0">${esc(s.cl)} · ${esc(s.car)} · ${esc(s.track)}</p>`;
+const legacy=Object.keys(s.par||{}).length?`<div class="card"><h3 style="margin-top:0">Altre voci</h3><table style="min-width:0">${Object.entries(s.par).map(([k,v])=>`<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</table></div>`:'';
+const rawC=(s.raw&&s.raw.length)?`<div class="card"><h3 style="margin-top:0">Altre voci del file (non assegnate)</h3><pre style="margin:0;white-space:pre-wrap;color:var(--mut);font-size:12px">${esc(s.raw.join('\n'))}</pre></div>`:'';
+const few=s.file&&Object.keys(s.v).length<6?`<p style="color:var(--ac)">Dal file sono state riconosciute poche voci: completale con Modifica.</p>`:'';
+$('#mod').innerHTML=`<div class="mo" onclick="if(event.target===this)xs()"><div class="mb" style="max-width:900px"><button class="s mx" onclick="xs()">✕</button><h2 style="margin:0 50px 10px 0;font-size:clamp(28px,6vw,48px);text-align:left">${esc(s.name)}</h2>${meta}${few}
+<div class="row">${sed?'<button onclick="sed=false;setupDet()">Salva</button>':'<button class="s" onclick="sed=true;setupDet()">Modifica</button>'}${s.file?`<a href="${s.file}" download="${esc(s.fname||s.name)}"><button class="s">⬇ Scarica file</button></a>`:''}
+<label>Confronta con<select onchange="cmp=this.value===''?-1:+this.value;setupDet()"><option value="">—</option>${D.setups.map((x,i)=>i==open?'':`<option value="${i}" ${i==cmp?'selected':''}>${esc(x.name)}</option>`).join('')}</select></label>
+<button class="s" onclick="if(confirm('Eliminare questo setup?')){D.setups.splice(open,1);open=-1;cmp=-1;sed=false;save();cm();setup()}">Elimina</button></div>
+${o?`<p><b>${nd}</b> differenze rispetto a ${esc(o.name)}</p>`:''}${body}${legacy}${rawC}</div></div>`}
+function xs(){open=-1;cmp=-1;sed=false;cm();setup()}
+/* TEMPI */
+let tp='cons';
+function tempiOld(){const l=D.times.filter(t=>!tp||t.drv==tp);
+$('#app').innerHTML=`<h2>Tempi &amp; Consumi</h2><div class="row"><label>Pilota<select onchange="tp=this.value;tempi()"><option value="">Tutti</option>${opt(D.team.drivers,tp)}</select></label></div>
+<div class="card tw"><table style="min-width:600px"><tr><th>Pista</th><th>Auto</th><th>Pilota</th><th>Giro medio</th><th>Carb./giro (L)</th><th>NRG/giro (%)</th><th>Gomme/giro (%)</th><th></th></tr>
+${l.map(t=>`<tr><td>${esc(t.track)}</td><td>${esc(t.car)}</td><td>${esc(t.drv)}</td><td>${esc(t.lap)}</td><td>${esc(t.fuel)}</td><td>${esc(t.nrg)}</td><td>${esc(t.tyre)}</td><td><a style="cursor:pointer" onclick="D.times.splice(${D.times.indexOf(t)},1);save();tempi()">✕</a></td></tr>`).join('')||'<tr><td colspan="8" style="color:var(--mut)">Nessun dato</td></tr>'}</table></div>
+<h3>Aggiungi rilevazione</h3><div class="card"><div class="grid"><label>Pista<select id="t_track">${opt(TRACKS)}</select></label><label>Auto<select id="t_car">${opt(Object.values(CARS).flat())}</select></label>
+<label>Pilota<select id="t_drv">${opt(D.team.drivers,tp)}</select></label><label>Giro medio<input id="t_lap" placeholder="3:28.5"></label><label>Carb./giro<input id="t_fuel" type="number" step="any"></label>
+<label>NRG/giro<input id="t_nrg" type="number" step="any"></label><label>Gomme/giro<input id="t_tyre" type="number" step="any"></label></div><br><button onclick="addT()">Aggiungi</button></div>`}
+function pl(s){s=String(s||'').trim();if(!s)return NaN;const m=s.match(/^(\d+):(\d+(?:[.,]\d+)?)$/);return m?(+m[1])*60+parseFloat(m[2].replace(',','.')):parseFloat(s.replace(',','.'))}
+function fl(x){if(!isFinite(x))return '—';const m=Math.floor(x/60);return m+':'+(x-m*60).toFixed(1).padStart(4,'0')}
+function tempiV2(){D.base=D.base||{};D.laps=D.laps||{};if(tp!=='base'&&!D.team.drivers.includes(tp))tp='base';const isB=tp==='base';
+const rows=Object.keys(D.base).filter(k=>{const [t,c]=k.split('|');return (!ft||t==ft)&&(!fa||c==fa)&&(!fc||(CARS[fc]||[]).includes(c))}).map(k=>{const b=D.base[k],[t,c]=k.split('|');let lc;
+if(isB){const v=D.team.drivers.map(d=>pl(D.laps[k+'|'+d])).filter(isFinite);lc=`<td>${v.length?fl(v.reduce((a,x)=>a+x)/v.length):'—'}</td>`}
+else lc=`<td><input style="min-width:80px" placeholder="3:28.5" value="${esc(D.laps[k+'|'+tp]||'')}" onchange="sLap('${k}',this.value)"></td>`;
+const ni=f=>`<td><input type="number" step="any" style="min-width:70px" value="${esc(b[f]??'')}" ${isB&&be?'':'disabled'} onchange="sB('${k}','${f}',this.value)"></td>`;
+return `<tr><td>${esc(t)}</td><td>${esc(c)}</td>${lc}${ni('fuel')}${ni('nrg')}${ni('tyre')}<td>${isB&&be?`<a style="cursor:pointer" onclick="dB('${k}')">✕</a>`:''}</td></tr>`}).join('');
+$('#app').innerHTML=`<h2>Tempi &amp; Consumi</h2><div class="row"><label>Pilota<select onchange="tp=this.value;tempi()"><option value="base" ${isB?'selected':''}>Dati base</option>${D.team.drivers.map(d=>`<option ${d==tp?'selected':''}>${esc(d)}</option>`).join('')}</select></label></div>
+<p style="color:var(--mut);margin:0 0 10px">${isB?'Dati base: consumi validi per tutti i piloti, modificabili solo qui.':'I consumi sono dati base e sono bloccati: per modificarli seleziona "Dati base". Qui inserisci il giro medio del pilota.'}</p>
+${isB?`<div class="row" style="align-items:center">${be?'<button onclick="be=false;msg=true;save();tempi()">Salva</button>':'<button class="s" onclick="be=true;msg=false;tempi()">Modifica</button>'}<span style="color:var(--mut)">${be?'Modifica in corso…':(msg?'✓ Dati salvati':'Dati bloccati: premi Modifica per cambiarli')}</span></div>`:''}${catCard(isB)}${fltF()}<div class="card tw"><table style="min-width:600px"><tr><th>Pista</th><th>Auto</th><th>${isB?'Giro medio (media piloti)':'Giro medio'}</th><th>Carb./giro (L)</th><th>NRG/giro (%)</th><th>Gomme/giro (%)</th><th></th></tr>${rows||'<tr><td colspan="7" style="color:var(--mut)">Nessun dato: aggiungi una combinazione auto e pista.</td></tr>'}</table></div>
+<h3>Aggiungi auto su pista</h3><div class="card"><div class="grid"><label>Pista<select id="t_track">${opt(TRACKS)}</select></label><label>Auto<select id="t_car">${opt(Object.values(CARS).flat())}</select></label></div><br><button onclick="addB()">Aggiungi</button></div><button class="s" onclick="clrT()">Cancella tutto</button>`}
+let tc='',tt='';
+function catCard(isB){if(!CARS[tc])tc=CLASSES[0];if(!TRACKS.includes(tt))tt=TRACKS[0];D.cat=D.cat||{};const b=D.cat[tc+'|'+tt]||{},d=(isB&&be)?'':'disabled',nr=v=>+v>0?(100/v).toFixed(2)+' %':'—';
+return `<div class="card"><h3 style="margin-top:0">Dati categoria su pista</h3><div class="grid"><label>Categoria<select onchange="tc=this.value;tempi()">${opt(CLASSES,tc)}</select></label><label>Pista<select onchange="tt=this.value;tempi()">${opt(TRACKS,tt)}</select></label></div><p style="color:var(--mut);margin:8px 0">Validi per tutte le auto della categoria su questa pista.</p><div class="grid"><label>Tempo pit lane (s)<input type="number" step="any" min="0" value="${esc(b.pit??'')}" ${d} onchange="sC('pit',this.value)"></label><label>Giri stint normale<input type="number" min="0" value="${esc(b.ln??'')}" ${d} onchange="sC('ln',this.value)"></label><label>Giri stint Lico<input type="number" min="0" value="${esc(b.ll??'')}" ${d} onchange="sC('ll',this.value)"></label></div><div class="kpi" style="margin-top:10px"><div><b id="kn">${nr(b.ln)}</b><span>NRG/giro stint normale</span></div><div><b id="kl">${nr(b.ll)}</b><span>NRG/giro stint Lico</span></div></div></div>`}
+function sC(f,v){D.cat=D.cat||{};const k=tc+'|'+tt;(D.cat[k]=D.cat[k]||{})[f]=v;save();const bb=D.cat[k],nr=x=>+x>0?(100/x).toFixed(2)+' %':'—';$('#kn').textContent=nr(bb.ln);$('#kl').textContent=nr(bb.ll)}
+let be=false,msg=false;
+let ft='',fc='',fa='';
+function fltF(){const cars=fc?(CARS[fc]||[]):Object.values(CARS).flat();return `<div class="card"><div class="grid"><label>Filtra pista<select onchange="ft=this.value;tempi()"><option value="">Tutte</option>${opt(TRACKS,ft)}</select></label><label>Filtra categoria<select onchange="fc=this.value;fa='';tempi()"><option value="">Tutte</option>${opt(CLASSES,fc)}</select></label><label>Filtra auto<select onchange="fa=this.value;tempi()"><option value="">Tutte</option>${opt(cars,fa)}</select></label></div></div>`}
+function clrT(){if(!confirm('Cancellare tutti i dati di Tempi & Consumi (consumi, giri medi e dati categoria su pista)?'))return;D.base={};D.laps={};D.cat={};D.times=[];be=false;msg=false;save();tempi()}
+function tempi(){if(tp!=='cons'&&!D.team.drivers.includes(tp))tp='cons';
+$('#app').innerHTML=`<h2>Tempi &amp; Consumi</h2><div class="row"><label>Vista<select onchange="tp=this.value;be=false;msg=false;tempi()"><option value="cons" ${tp=='cons'?'selected':''}>Consumi</option>${D.team.drivers.map(d=>`<option ${d==tp?'selected':''}>${esc(d)}</option>`).join('')}</select></label></div><div id="tcont"></div>`;tp=='cons'?tCons():tDrv()}
+function bar(){return `<div class="row" style="align-items:center">${be?'<button onclick="be=false;msg=true;save();tempi()">Salva</button>':'<button class="s" onclick="be=true;msg=false;tempi()">Modifica</button>'}<span style="color:var(--mut)">${be?'Modifica in corso…':(msg?'✓ Dati salvati':'Dati bloccati: premi Modifica per cambiarli')}</span></div>`}
+function tCons(){D.cat=D.cat||{};const d=be?'':'disabled',nr=v=>+v>0?(100/v).toFixed(2)+' %':'—';
+$('#tcont').innerHTML=bar()+`<p style="color:var(--mut)">Per ogni circuito e categoria: valori validi per tutte le auto della categoria su quella pista.</p>`+TRACKS.map((t,ti)=>`<div class="card"><h3 style="margin-top:0">${esc(t)}</h3><div class="grid" style="margin-bottom:10px"><label>Tempo pit lane (s) – uguale per tutte le categorie<input type="number" step="any" min="0" style="min-width:70px" value="${esc((D.pit||{})[t]??'')}" ${d} oninput="sP(${ti},this.value)"></label></div><div class="tw"><table style="min-width:540px"><tr><th>Categoria</th><th>Giri stint normale</th><th>NRG/giro normale</th><th>Giri stint Lico</th><th>NRG/giro Lico</th></tr>${CLASSES.map((c,ci)=>{const b=D.cat[c+'|'+t]||{},i=f=>`<td><input type="number" step="any" min="0" style="min-width:70px" value="${esc(b[f]??'')}" ${d} oninput="sK(${ci},${ti},'${f}',this.value,this)"></td>`;return `<tr><td>${esc(c)}</td>${i('ln')}<td class="nn">${nr(b.ln)}</td>${i('ll')}<td class="nl">${nr(b.ll)}</td></tr>`}).join('')}</table></div></div>`).join('')}
+function sP(ti,v){D.pit=D.pit||{};D.pit[TRACKS[ti]]=v;save()}
+function sK(ci,ti,f,v,el){const k=CLASSES[ci]+'|'+TRACKS[ti];D.cat=D.cat||{};(D.cat[k]=D.cat[k]||{})[f]=v;save();const tr=el.closest('tr'),b=D.cat[k],nr=x=>+x>0?(100/x).toFixed(2)+' %':'—';tr.querySelector('.nn').textContent=nr(b.ln);tr.querySelector('.nl').textContent=nr(b.ll)}
+let dt='',dc='',da='',ds='';
+function dK(){return tp+'|'+dt+'|'+da+'|'+ds}
+function tDrv(){if(!TRACKS.includes(dt))dt=TRACKS[0];if(!CARS[dc])dc=CLASSES[0];const cars=CARS[dc]||[];if(!cars.includes(da))da=cars[0]||'';const sl=D.setups.filter(s=>s.cl==dc&&s.car==da&&s.track==dt).map(s=>s.name);if(ds&&!sl.includes(ds))ds='';D.dd=D.dd||{};const r=D.dd[dK()];
+let h=`<div class="card"><div class="grid"><label>Pista<select onchange="dt=this.value;tempi()">${opt(TRACKS,dt)}</select></label><label>Categoria<select onchange="dc=this.value;da='';ds='';tempi()">${opt(CLASSES,dc)}</select></label><label>Auto<select onchange="da=this.value;ds='';tempi()">${opt(cars,da)}</select></label><label>Setup<select onchange="ds=this.value;tempi()"><option value="">—</option>${opt(sl,ds)}</select></label></div></div>`;
+if(!r)h+=`<div class="card"><p style="margin-top:0">Nessun dato salvato per questa combinazione.</p><button onclick="dNew()">Crea nuovo dato</button></div>`;
+else{const d=be?'':'disabled',W=r.w||{};h+=bar()+`<div class="card"><div class="grid"><label>Best Lap<input placeholder="3:25.4" value="${esc(r.bl||'')}" ${d} oninput="sD('bl',this.value)"></label><label>Giro medio<input placeholder="3:28.5" value="${esc(r.avg||'')}" ${d} oninput="sD('avg',this.value)"></label></div></div><div class="card tw"><h3 style="margin-top:0">Consumo gomme (%)</h3><table style="min-width:520px"><tr><th>Mescola</th><th>Ant. sinistra</th><th>Ant. destra</th><th>Post. sinistra</th><th>Post. destra</th></tr>${['Soft','Media','Hard'].map(m=>`<tr><td>${m}</td>${['fl','fr','rl','rr'].map(c=>`<td><input type="number" step="any" min="0" style="min-width:70px" value="${esc((W[m]||{})[c]??'')}" ${d} oninput="sW('${m}','${c}',this.value)"></td>`).join('')}</tr>`).join('')}</table></div><button class="s" onclick="dDel()">Elimina dato</button>`}
+$('#tcont').innerHTML=h}
+function dNew(){D.dd=D.dd||{};D.dd[dK()]={w:{}};be=true;msg=false;save();tempi()}
+function sD(f,v){D.dd[dK()][f]=v;save()}
+function sW(m,c,v){const r=D.dd[dK()];r.w=r.w||{};(r.w[m]=r.w[m]||{})[c]=v;save()}
+function dDel(){if(confirm('Eliminare questo dato?')){delete D.dd[dK()];be=false;save();tempi()}}
+function sB(k,f,v){D.base[k][f]=v;save()}
+function sLap(k,v){D.laps[k+'|'+tp]=v;save()}
+function dB(k){if(confirm('Rimuovere questa combinazione?')){delete D.base[k];save();tempi()}}
+function addB(){D.base=D.base||{};const k=$('#t_track').value+'|'+$('#t_car').value;if(!D.base[k])D.base[k]={};save();tempi()}
+function addT(){const g=k=>$('#t_'+k).value;D.times.push({track:g('track'),car:g('car'),drv:g('drv'),lap:g('lap'),fuel:g('fuel'),nrg:g('nrg'),tyre:g('tyre')});save();tempi()}
+
+/* TEAM */
+let allR=false;
+function team(){const T=D.team,rs=[...T.races].reverse();
+$('#app').innerHTML=`<div style="text-align:center;margin-bottom:12px">${T.logo?`<img src="${T.logo}" style="max-height:110px;max-width:80%" alt="">`:'<div class="logo" style="width:140px;height:90px;margin:auto;font-size:76px">LM</div>'}<h2 style="margin:10px 0 0">${esc(T.name)}</h2></div>
+<div class="card"><h3 style="margin-top:0">Piloti</h3>${T.drivers.map((d,i)=>`<div class="pr"><label class="av" title="Cambia foto">${av(d)}<input type="file" accept="image/*" hidden onchange="dphoto(${i},this.files[0])"></label><b>${esc(d)}</b><button class="s" onclick="D.team.drivers.splice(${i},1);save();team()">Rimuovi</button></div>`).join('')}
+<div class="row" style="margin-top:8px"><input id="nd" placeholder="Nuovo pilota"><label style="min-width:200px">Foto pilota<input id="ndp" type="file" accept="image/*"></label><button onclick="addD()">Aggiungi</button></div></div>
+<div class="card"><h3 style="margin-top:0">Statistiche</h3><div class="kpi">${Object.entries(T.stats).map(([k,v])=>`<div><b><input type="number" value="${v}" style="font-size:18px;font-weight:700" onchange="D.team.stats['${k}']=this.value;save()"></b><span>${k}</span></div>`).join('')}</div></div>
+<div class="card"><h3 style="margin-top:0">${allR?'Tutti i risultati':'Ultima gara'}</h3>
+${(allR?rs:rs.slice(0,1)).map(r=>`<div class="item" style="cursor:default"><span><b>${esc(r.name)}</b><br><span style="color:var(--mut)">${esc(r.date)}</span></span><b>${esc(r.pos)}</b></div>`).join('')||'<p style="color:var(--mut)">Nessuna gara registrata</p>'}
+${rs.length>1?`<button class="s" style="margin-top:8px" onclick="allR=!allR;team()">${allR?'Mostra solo ultima':'Vedi tutti i risultati'}</button>`:''}
+<div class="row" style="margin-top:10px"><input id="rn" placeholder="Gara (es. 6h Spa)"><input id="rd" type="date"><input id="rp" placeholder="Posizione (es. P2)"><button onclick="addR()">+ Gara</button></div></div>
+<h3>Sponsor</h3><div class="sp">${T.sponsors.map((s,i)=>`<div>${esc(s)}<br><a style="cursor:pointer;font-weight:400;color:var(--mut)" onclick="D.team.sponsors.splice(${i},1);save();team()">rimuovi</a></div>`).join('')||'<span style="color:var(--mut)">Nessuno sponsor</span>'}</div>
+<div class="row" style="margin-top:10px"><input id="ns" placeholder="Nuovo sponsor"><button onclick="if($('#ns').value){D.team.sponsors.push($('#ns').value);save();team()}">Aggiungi</button></div>`}
+function av(n){const p=(D.team.photos||{})[n];return p?`<img class="avi" src="${p}" alt="">`:`<span class="avi">${esc((n||'?')[0].toUpperCase())}</span>`}
+function dphoto(i,f){if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=160,m=Math.min(im.width,im.height);c.width=c.height=s;c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,s,s);D.team.photos=D.team.photos||{};D.team.photos[D.team.drivers[i]]=c.toDataURL('image/jpeg',.8);save();team()};im.src=r.result};r.readAsDataURL(f)}
+function addD(){const n=$('#nd').value.trim(),f=$('#ndp').files[0];if(!n)return;if(!f)return alert('Carica una foto del pilota');D.team.drivers.push(n);dphoto(D.team.drivers.length-1,f)}
+function addR(){if(!$('#rn').value)return;D.team.races.push({name:$('#rn').value,date:$('#rd').value,pos:$('#rp').value});save();team()}
+
+/* IMPOSTAZIONI */
+function sett(){sett0();$('#app').insertAdjacentHTML('beforeend',mgF()+ptF()+catF()+logoF('car','Loghi auto')+logoF('class','Loghi categorie')+logoF('track','Loghi piste'))}
+function sett0(){$('#app').innerHTML=`<h2>Impostazioni</h2><div class="card"><div class="grid">
+<label>Nome team<input value="${esc(D.team.name)}" onchange="D.team.name=this.value;save()"></label>
+<label>Logo (immagine)<input type="file" accept="image/*" onchange="logo(this.files[0])"></label>
+<label>Moltiplicatore tempo in Game (x)<input type="number" value="${D.mult}" min="1" onchange="D.mult=+this.value||1;save()"></label>
+<label>Tema<select onchange="document.documentElement.dataset.theme=this.value"><option value="">Auto</option><option>dark</option><option>light</option></select></label></div>
+<br><button class="s" onclick="if(confirm('Cancellare tutti i dati?')){try{localStorage.removeItem('lmu')}catch(e){}location.reload()}">Azzera dati</button></div>`}
+function cfg(){D.cfg=D.cfg||{};D.cfg.tank=D.cfg.tank||{};D.cfg.res=D.cfg.res||{};D.cfg.logo=D.cfg.logo||{};D.cfg.pt=D.cfg.pt||{fuel:41,tyre:3,body:0};return D.cfg}
+function lg(t,n){const p=cfg().logo[t+':'+n];return p?`<img class="lgs" src="${p}" alt="">`:''}
+function lg2(t,n){const p=cfg().logo[t+':'+n];return p?`<img class="lgs" src="${p}" alt="${esc(n)}">`:`<span class="chip">${esc(n)}</span>`}
+function lgoL(t){return t=='car'?Object.values(CARS).flat():t=='class'?CLASSES:TRACKS}
+function catF(){const c=cfg();return `<div class="card"><h3 style="margin-top:0">Categorie auto</h3>${CLASSES.map(k=>`<div class="pr"><b>${k}</b><label>Serbatoio (L)<input type="number" min="0" step="any" value="${c.tank[k]??''}" onchange="cs('tank','${k}',this.value)"></label><label>Usa<select onchange="cs('res','${k}',this.value)">${opt(['NRG','Carburante'],c.res[k]||'Carburante')}</select></label></div>`).join('')}</div>`}
+function cs(a,k,v){cfg()[a][k]=a=='tank'?(+v||0):v;save()}
+function logoF(t,title){const c=cfg();return `<div class="card"><h3 style="margin-top:0">${title}</h3><div class="lg">${lgoL(t).map((n,i)=>{const p=c.logo[t+':'+n];return `<label class="lgi">${p?`<img src="${p}" alt="">`:'<span class="avi">+</span>'}<span>${esc(n)}</span><input type="file" accept="image/*" hidden onchange="lgo('${t}',${i},this.files[0])"></label>`}).join('')}</div></div>`}
+function lgo(t,i,f){if(!f)return;const n=lgoL(t)[i],r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,160/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);cfg().logo[t+':'+n]=c.toDataURL('image/png');save();sett()};im.onerror=()=>alert('Immagine non valida');im.src=r.result};r.readAsDataURL(f)}
+function saveL(){D.lists={tracks:TRACKS,classes:CLASSES,cars:CARS};save()}
+function gL(kind,ci){return kind=='track'?TRACKS:kind=='class'?CLASSES:kind=='car'?CARS[CLASSES[ci]]:D.team.drivers}
+function re(obj,f){Object.keys(obj).forEach(k=>{const n=f(k);if(n!==k){obj[n]=obj[k];delete obj[k]}})}
+function mig(kind,o,v){const c=cfg(),S=D.strat,B=D.base||{},LP=D.laps||{};const ri=i=>re(D.dd||{},k=>{const p=k.split('|');if(p[i]==o)p[i]=v;return p.join('|')});if(kind=='drv')ri(0);if(kind=='track')ri(1);if(kind=='car')ri(2);
+if(kind=='track'){re(D.pit||{},k=>k==o?v:k);re(D.cat||{},k=>k.endsWith('|'+o)?k.slice(0,-o.length)+v:k);re(c.logo,k=>k=='track:'+o?'track:'+v:k);const f=k=>k.startsWith(o+'|')?v+k.slice(o.length):k;re(B,f);re(LP,f);D.setups.forEach(s=>{if(s.track==o)s.track=v});if(S.track==o)S.track=v}
+if(kind=='car'){re(c.logo,k=>k=='car:'+o?'car:'+v:k);const f=k=>{const p=k.split('|');if(p[1]==o)p[1]=v;return p.join('|')};re(B,f);re(LP,f);D.setups.forEach(s=>{if(s.car==o)s.car=v});if(S.car==o)S.car=v}
+if(kind=='class'){re(c.logo,k=>k=='class:'+o?'class:'+v:k);re(D.cat||{},k=>k.startsWith(o+'|')?v+k.slice(o.length):k);CARS[v]=CARS[o];delete CARS[o];re(c.tank,k=>k==o?v:k);re(c.res,k=>k==o?v:k);D.setups.forEach(s=>{if(s.cl==o)s.cl=v});if(S.cl==o)S.cl=v}
+if(kind=='drv'){const T=D.team;if(T.photos)re(T.photos,k=>k==o?v:k);if(S.part)re(S.part,k=>k==o?v:k);re(LP,k=>k.endsWith('|'+o)?k.slice(0,-o.length)+v:k);Object.values(S.rows||{}).forEach(r=>{['drv','eng','rest'].forEach(x=>{if(r[x]==o)r[x]=v})});if(tp==o)tp=v}}
+function lrn(kind,ci,i,v){v=v.trim();const L=gL(kind,ci),o=L[i];if(!v||v===o)return sett();if(L.includes(v)){alert('Esiste già');return sett()}L[i]=v;mig(kind,o,v);saveL();sett()}
+function ladd(kind,ci){const v=$('#ln_'+kind+'_'+ci).value.trim();if(!v)return;const L=gL(kind,ci);if(L.includes(v))return alert('Esiste già');if(kind=='class')CARS[v]=[];L.push(v);saveL();sett()}
+function ldel(kind,ci,i){const L=gL(kind,ci),o=L[i];if(kind=='class'&&CLASSES.length<2)return alert('Serve almeno una categoria');if(!confirm('Rimuovere "'+o+'"?'))return;L.splice(i,1);if(kind=='class')delete CARS[o];const c=cfg(),B=D.base||{},LP=D.laps||{};
+if(kind=='track'){delete c.logo['track:'+o];[B,LP].forEach(O=>Object.keys(O).forEach(k=>{if(k.startsWith(o+'|'))delete O[k]}))}
+if(kind=='car'){delete c.logo['car:'+o];[B,LP].forEach(O=>Object.keys(O).forEach(k=>{if(k.split('|')[1]==o)delete O[k]}))}
+if(kind=='drv'){if(D.team.photos)delete D.team.photos[o];if(D.strat.part)delete D.strat.part[o]}saveL();sett()}
+function mgF(){const row=(kind,ci,items)=>items.map((n,i)=>`<div class="mr"><input value="${esc(n)}" onchange="lrn('${kind}',${ci},${i},this.value)"><button class="s" onclick="ldel('${kind}',${ci},${i})">✕</button></div>`).join('')+`<div class="mr"><input id="ln_${kind}_${ci}" placeholder="Aggiungi nuovo"><button onclick="ladd('${kind}',${ci})">+</button></div>`;
+return `<div class="card"><h3 style="margin-top:0">Piste</h3>${row('track',0,TRACKS)}</div><div class="card"><h3 style="margin-top:0">Categorie</h3>${row('class',0,CLASSES)}</div><div class="card"><h3 style="margin-top:0">Auto</h3>${CLASSES.map((c,ci)=>`<h3 style="color:var(--ac)">${esc(c)}</h3>${row('car',ci,CARS[c]||[])}`).join('')}</div><div class="card"><h3 style="margin-top:0">Piloti del team</h3>${row('drv',0,D.team.drivers)}</div>`}
+function logo(f){if(!f)return;const r=new FileReader();r.onload=()=>{D.team.logo=r.result;save();render()};r.readAsDataURL(f)}
+render();
+</script></body></html>
