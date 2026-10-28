@@ -6,12 +6,12 @@ const SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
-  './icons/favicon-48.png',
-  './icons/apple-touch-icon.png',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/maskable-192.png',
-  './icons/maskable-512.png'
+  './favicon-48.png',
+  './apple-touch-icon.png',
+  './icon-192.png',
+  './icon-512.png',
+  './maskable-192.png',
+  './maskable-512.png'
 ];
 
 self.addEventListener('install', e => {
