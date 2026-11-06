@@ -10,7 +10,7 @@ header img,.logo{width:36px;height:36px;object-fit:contain;border-radius:6px}
 header h1{flex:1;font:italic 700 22px var(--hf);letter-spacing:2px;text-transform:uppercase;margin:0}
 #menuBtn{background:none;border:0;color:var(--tx);font-size:26px;cursor:pointer}
 #menu{display:none;position:fixed;inset:0;z-index:1;background:#000;padding:110px 20px 40px;text-align:center;overflow:auto}
-#menu.open{display:block}#menu a{display:block;padding:12px;color:var(--tx);text-decoration:none;cursor:pointer;font:600 46px/1.1 var(--hf)}#menu a:hover,#menu a.on{color:var(--ac)}
+body.mnu #alcol{display:none!important}#menu.open{display:block}#menu a{display:block;padding:12px;color:var(--tx);text-decoration:none;cursor:pointer;font:600 46px/1.1 var(--hf)}#menu a:hover,#menu a.on{color:var(--ac)}
 main{max-width:none;margin:0;padding:14px 24px}
 h2{font:700 clamp(40px,11vw,84px)/.95 var(--hf);letter-spacing:1px;text-transform:uppercase;margin:24px 0 22px;color:transparent;-webkit-text-stroke:2px var(--ac);text-align:right}h3{font:700 20px var(--hf);letter-spacing:2px;text-transform:uppercase;margin:18px 0 8px}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:14px}
@@ -74,8 +74,8 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const fmt=s=>{s=Math.max(0,Math.round(s));return `${Math.floor(s/3600)}h ${String(Math.floor(s%3600/60)).padStart(2,'0')}m`};
 const hm=d=>d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});
 let page=1;
-function nav(i){page=i;$('#menu').classList.remove('open');$('#menuBtn').textContent='☰';render()}
-$('#menuBtn').onclick=e=>{const o=$('#menu').classList.toggle('open');e.target.textContent=o?'✕':'☰'};
+function nav(i){page=i;document.body.classList.remove('mnu');$('#menu').classList.remove('open');$('#menuBtn').textContent='☰';render()}
+$('#menuBtn').onclick=e=>{const o=$('#menu').classList.toggle('open');document.body.classList.toggle('mnu',o);e.target.textContent=o?'✕':'☰'};
 function head(){$('#hl').innerHTML=D.team.logo?`<img src="${D.team.logo}" alt="">`:'<div class="logo">LM</div>';
 $('#menu').innerHTML=PAGES.map((p,i)=>`<a class="${i==page?'on':''}" onclick="nav(${i})">${p}</a>`).join('')}
 function render(){ENGM=(page==0);engStop();head();[eng,strat,setup,tempi,team,bop,sett][page]();window.scrollTo(0,0);if(page==0)engStart()}
